@@ -11,18 +11,15 @@ class users_controller extends base_controller {
     }
 
     public function signup() {
-
         # Setup view
             $this->template->content = View::instance('v_users_signup');
             $this->template->title   = "Sign Up";
 
         # Render template
             echo $this->template;
-
     }
 
     public function p_signup() {
-
         # Dump out the results of POST to see what the form submitted
         // print_r($_POST);
 
@@ -45,7 +42,6 @@ class users_controller extends base_controller {
     }
 
     public function login($error = NULL) {
-
         # Set up the view
         $this->template->content = View::instance("v_users_login");
 
@@ -57,7 +53,6 @@ class users_controller extends base_controller {
     }
 
     public function p_login() {
-
         # Sanitize the user entered data to prevent any funny-business (re: SQL Injection Attacks)
         $_POST = DB::instance(DB_NAME)->sanitize($_POST);
 
@@ -81,7 +76,6 @@ class users_controller extends base_controller {
 
         # But if we did, login succeeded! 
         } else {
-
             /* 
             Store this token in a cookie using setcookie()
             Important Note: *Nothing* else can echo to the page before setcookie is called
@@ -95,13 +89,10 @@ class users_controller extends base_controller {
 
             # Send them to the main page - or whever you want them to go
             Router::redirect("/");
-
         }
-
     }
 
     public function logout() {
-
         # Generate and save a new token for next login
         $new_token = sha1(TOKEN_SALT.$this->user->email.Utils::generate_random_string());
 
@@ -117,11 +108,9 @@ class users_controller extends base_controller {
 
         # Send them back to the main index.
         Router::redirect("/");
-
     }
 
     public function profile() {
-
         # If user is blank, they're not logged in; redirect them to the login page
         if(!$this->user) {
             Router::redirect('/users/login');
