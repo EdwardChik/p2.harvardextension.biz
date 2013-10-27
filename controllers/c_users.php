@@ -54,7 +54,6 @@ class users_controller extends base_controller {
 
         # Render the view
         echo $this->template;
-
     }
 
     public function p_login() {
