@@ -18,22 +18,42 @@ class users_controller extends base_controller {
         # Dump out the results of POST to see what the form submitted
         // print_r($_POST);
 
-        # More data we want stored with the user
-        $_POST['created']  = Time::now();
-        $_POST['modified'] = Time::now();
+        $q = "SELECT user_id
+            FROM users 
+            WHERE email = '".$_POST['email']."'";            
 
-        # Encrypt the password  
-        $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);            
+        # Sanitize the user entered data to prevent any funny-business (re: SQL Injection Attacks)    
+        $user_id = DB::instance(DB_NAME)->select_row($q);
+    
+        # If we don't have a user_id that means this email is free to use
+        if(!$user_id) {
 
-        # Create an encrypted token via their email address and a random string
-        $_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string()); 
+            # More data we want stored with the user
+            $_POST['created']  = Time::now();
+            $_POST['modified'] = Time::now();
 
-        # Insert this user into the database
-        $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
+            # Encrypt the password  
+            $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);            
 
-        # For now, just confirm they've signed up - 
-        # You should eventually make a proper View for this
-        echo "You're signed up";
+            # Create an encrypted token via their email address and a random string
+            $_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string()); 
+
+            # Insert this user into the database
+            $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
+
+            # For now, just confirm they've signed up - 
+            # You should eventually make a proper View for this
+            echo "You're signed up";
+
+            # Send them to the main page - or wherver you want them to go
+            Router::redirect("/");
+        } else {
+            echo "This e-mail address is already in use.";
+
+            # Send them back to the signup page
+            Router::redirect("/users/signup");
+        }
+
     }
 
     public function login($error = NULL) {
