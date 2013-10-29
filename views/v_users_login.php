@@ -10,11 +10,14 @@
 
     <?php if(isset($error)): ?>
         <div class='error'>
-            Login failed. Please double check your email and password.
+            Login failed. Please double check your email and password. To reset your password, please click <a href='/users/reset'>here</a>.
         </div>
         <br>
     <?php endif; ?>
 
     <input type='submit' value='Log in'>
+
+    <br><br>
+    Forgot your password? <a href='/users/reset'>Click here</a> to reset it.
 
 </form>

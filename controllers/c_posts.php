@@ -18,7 +18,6 @@ class posts_controller extends base_controller {
 
         # Render template
         echo $this->template;
-
     }
 
     public function p_add() {
@@ -42,7 +41,7 @@ class posts_controller extends base_controller {
 
         # Set up the View
         $this->template->content = View::instance('v_posts_index');
-        $this->template->title   = "All Posts";
+        $this->template->title   = "Your Followed Posts";
 
         # Query
         $q = 'SELECT 
@@ -67,14 +66,13 @@ class posts_controller extends base_controller {
 
         # Render the View
         echo $this->template;
-
     }
 
     public function users() {
 
         # Set up the View
         $this->template->content = View::instance("v_posts_users");
-        $this->template->title   = "Users";
+        $this->template->title   = "All Users";
 
         # Build the query to get all the users
         $q = "SELECT *
@@ -118,7 +116,6 @@ class posts_controller extends base_controller {
 
         # Send them back
         Router::redirect("/posts/users");
-
     }
 
     public function unfollow($user_id_followed) {
@@ -129,7 +126,6 @@ class posts_controller extends base_controller {
 
         # Send them back
         Router::redirect("/posts/users");
-
     }
-    
+
 } # end of the class

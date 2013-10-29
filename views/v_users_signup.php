@@ -1,18 +1,18 @@
 <form method='POST' action='/users/p_signup'>
 
-    First Name<br>
+    First Name: <br>
     <input type='text' name='first_name'>
     <br><br>
 
-    Last Name<br>
+    Last Name: <br>
     <input type='text' name='last_name'>
     <br><br>
 
-    Email<br>
+    E-mail Address: <br>
     <input type='text' name='email'>
     <br><br>
 
-    Password<br>
+    Password: <br>
     <input type='password' name='password'>
     <br><br>
 

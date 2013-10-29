@@ -8,7 +8,7 @@ class users_controller extends base_controller {
     public function signup() {
         # Setup view
             $this->template->content = View::instance('v_users_signup');
-            $this->template->title   = "Sign Up";
+            $this->template->title   = "Sign Up for Woof Woof Woof";
 
         # Render template
             echo $this->template;
@@ -39,6 +39,7 @@ class users_controller extends base_controller {
     public function login($error = NULL) {
         # Set up the view
         $this->template->content = View::instance("v_users_login");
+        $this->template->title   = "Login to Woof Woof Woof";
 
         # Pass data to the view
         $this->template->content->error = $error;
@@ -78,11 +79,24 @@ class users_controller extends base_controller {
             param 1 = name of the cookie
             param 2 = the value of the cookie
             param 3 = when to expire
-            param 4 = the path of the cooke (a single forward slash sets it for the entire domain)
+            param 4 = the path of the cookie (a single forward slash sets it for the entire domain)
             */
             setcookie("token", $token, strtotime('+1 year'), '/');
 
-            # Send them to the main page - or whever you want them to go
+            # store current time
+            $current_time = Time::now();
+
+            $q = "SELECT user_id
+                FROM users 
+                WHERE email = '".$_POST['email']."' 
+                AND password = '".$_POST['password']."'";
+
+            $user_id = DB::instance(DB_NAME)->select_field($q);    
+
+            # update the last_login time for the user
+            $update = DB::instance(DB_NAME)->update('users', Array("last_login" => $current_time), "WHERE user_id = ".$user_id);
+
+            # Send them to the main page - or wherver you want them to go
             Router::redirect("/");
         }
     }
@@ -115,10 +129,65 @@ class users_controller extends base_controller {
 
         # Setup view
         $this->template->content = View::instance('v_users_profile');
-        $this->template->title   = "Profile of".$this->user->first_name;
+        $this->template->title   = "Profile for ".$this->user->first_name;
 
         # Render template
         echo $this->template;
+    }
+
+    public function reset() {
+        # Setup view
+            $this->template->content = View::instance('v_users_reset');
+            $this->template->title   = "Reset Password for Woof Woof Woof";
+
+        # Render template
+            echo $this->template;
+    }
+
+    public function p_reset() {
+        # Sanitize the user entered data to prevent any funny-business (re: SQL Injection Attacks)
+        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+
+        # Search the db for this email
+        $q = "SELECT user_id 
+            FROM users 
+            WHERE email = '".$_POST['email']."'";
+        
+        $user_id = DB::instance(DB_NAME)->select_field($q);
+        
+        # False will indicate a user was not found for this email
+        if(!$user_id) {
+
+            # Send them back to the password reset page
+            Router::redirect("/users/reset");
+        } else {
+
+            # Generate a new password; this is what we'll send in the email
+            $new_password = Utils::generate_random_string();
+
+            # Encrypt the password  
+            $hashed_password = sha1(PASSWORD_SALT.$new_password);     
+
+            # store current time
+            $current_time = Time::now();
+            
+            # Update database with new hashed password
+            $update = DB::instance(DB_NAME)->update('users', Array("password" => $hashed_password, "modified" => $current_time), "WHERE user_id = ".$user_id);
+
+            # Success
+            if($update) {
+                # return $new_password;
+
+                # Send them to the main page - or wherver you want them to go
+                Router::redirect("/");
+
+                # For now, just confirm they've signed up - 
+                # You should eventually make a proper View for this
+                echo "Your password has been changed to " . $new_password;
+            } else 
+                return false;
+
+        }
     }
 
 } # end of the class
