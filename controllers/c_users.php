@@ -137,11 +137,10 @@ class users_controller extends base_controller {
 
         # Search the db for this email and password
         # Retrieve the token if it's available
-        $q = "SELECT token 
+        $q = "SELECT token
             FROM users 
             WHERE email = '".$_POST['email']."' 
-            AND password = '".$_POST['password']."'
-            AND status = 'active'";
+            AND password = '".$_POST['password']."'";
 
         $token = DB::instance(DB_NAME)->select_field($q);
 
@@ -152,34 +151,50 @@ class users_controller extends base_controller {
             Router::redirect("/users/login/error");
 
         # But if we did, login succeeded! 
+        # } elseif (isset{$token) AND ) {
+        #   # code...
         } else {
-            /* 
-            Store this token in a cookie using setcookie()
-            Important Note: *Nothing* else can echo to the page before setcookie is called
-            Not even one single white space.
-            param 1 = name of the cookie
-            param 2 = the value of the cookie
-            param 3 = when to expire
-            param 4 = the path of the cookie (a single forward slash sets it for the entire domain)
-            */
-            setcookie("token", $token, strtotime('+1 year'), '/');
 
-            # store current time
-            $current_time = Time::now();
-
-            # locates user_id for row in users that matched authorization token
-            $q = "SELECT user_id
+            $status = "SELECT status
                 FROM users 
                 WHERE email = '".$_POST['email']."' 
                 AND password = '".$_POST['password']."'";
 
-            $user_id = DB::instance(DB_NAME)->select_field($q);    
+            # if a match for the token is found
+            if($status == 'pending') {
+                # ask user to try verification again
+                echo "You must verify your account before logging in, <a href='/users/verify'>click here</a> to try again.";
 
-            # update the last_login time for the user
-            $update = DB::instance(DB_NAME)->update('users', Array("last_login" => $current_time), "WHERE user_id = ".$user_id);
+            } else {
+                /* 
+                Store this token in a cookie using setcookie()
+                Important Note: *Nothing* else can echo to the page before setcookie is called
+                Not even one single white space.
+                param 1 = name of the cookie
+                param 2 = the value of the cookie
+                param 3 = when to expire
+                param 4 = the path of the cookie (a single forward slash sets it for the entire domain)
+                */
+                setcookie("token", $token, strtotime('+1 year'), '/');
 
-            # Send them to the main page - or wherver you want them to go
-            Router::redirect("/");
+                # store current time
+                $current_time = Time::now();
+
+                # locates user_id for row in users that matched authorization token
+                $user = "SELECT user_id
+                    FROM users 
+                    WHERE email = '".$_POST['email']."' 
+                    AND password = '".$_POST['password']."'";
+
+                $user_id = DB::instance(DB_NAME)->select_field($user);    
+
+                # update the last_login time for the user
+                $update = DB::instance(DB_NAME)->update('users', Array("last_login" => $current_time), "WHERE user_id = ".$user_id);
+
+                # Send them to the main page - or wherver you want them to go
+                Router::redirect("/");
+
+            }
         }
     }
 

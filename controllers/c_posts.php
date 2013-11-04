@@ -51,8 +51,22 @@ class posts_controller extends base_controller {
         echo $this->template;
     }
 
+    public function search() {
+
+        # Setup view
+        $this->template->content = View::instance('v_posts_search');
+        $this->template->title   = "Search on Woof Woof Woof";
+
+        # Render template
+        echo $this->template;
+    }
 
 
+
+
+    public function p_search() {
+
+    }
 
 
 
