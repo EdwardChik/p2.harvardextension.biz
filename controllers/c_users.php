@@ -15,17 +15,15 @@ class users_controller extends base_controller {
     }
 
     public function p_signup() {
-        # Dump out the results of POST to see what the form submitted
-        // print_r($_POST);
-
+        # checks if entered e-mail address already exists in users table
         $q = "SELECT user_id
             FROM users 
             WHERE email = '".$_POST['email']."'";            
 
-        # Sanitize the user entered data to prevent any funny-business (re: SQL Injection Attacks)    
+        # Sanitizes the user entered data to prevent attacks (such as SQL injection)    
         $user_id = DB::instance(DB_NAME)->select_row($q);
     
-        # If we don't have a user_id that means this email is free to use
+        # If we don't have a user_id match, that means this e-mail address is available
         if(!$user_id) {
 
             # More data we want stored with the user
@@ -36,14 +34,36 @@ class users_controller extends base_controller {
             $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);            
 
             # Create an encrypted token via their email address and a random string
-            $_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string()); 
+            $_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
+
+            # Create an encrypted verification token via their email address and a random string
+            $_POST['email_verify'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
+
+            # Initializes status as pending
+            $_POST['status'] = "pending";
 
             # Insert this user into the database
             $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
 
-            # For now, just confirm they've signed up - 
-            # You should eventually make a proper View for this
-            echo "You're signed up";
+
+
+            # Build a multi-dimension array of recipients of this email
+            $to[] = Array("name" => $_POST['first_name']." ".$_POST['last_name'], "email" => $_POST['email']);
+
+            # Build a single-dimension array of who this email is coming from
+            # note it's using the constants we set in the configuration above)
+            $from = Array("name" => APP_NAME, "email" => APP_EMAIL);
+
+            # Subject
+            $subject = "Welcome to Woof Woof Woof!";
+
+            # You can set the body as just a string of text
+            $body = "Hi ".$_POST['first_name']." ".$_POST['last_name'].", this is just a message to confirm your registration at Woof Woof Woof. Now that you have signed up, you're almost ready to woof with your friends! Your verification code is: ".$_POST['email_verify'];
+
+            # With everything set, send the email
+            $email = Email::send($to, $from, $subject, $body, true);
+
+
 
             # Send them to the main page - or wherver you want them to go
             Router::redirect("/");
@@ -55,6 +75,46 @@ class users_controller extends base_controller {
         }
 
     }
+
+
+
+
+    public function signup_verify() {
+        # Setup view
+            $this->template->content = View::instance('v_users_signup_verify');
+            $this->template->title   = "Verify Account for Woof Woof Woof";
+
+        # Render template
+            echo $this->template;
+    }
+
+    public function p_signup_verify() {
+        # checks if entered e-mail address already exists in users table
+        $q = "SELECT user_id
+            FROM users
+            WHERE email_verify = '".$_POST['email_verify']."'";
+
+        # Sanitizes the user entered data to prevent attacks (such as SQL injection)    
+        $user_id = DB::instance(DB_NAME)->select_row($q);
+    
+        # If there is a user_id match, set the account status to active
+        if($user_id) {
+            # update the account status time for the user
+            $update = DB::instance(DB_NAME)->update('users', Array("status" => "active"), "WHERE user_id = ".$user_id);
+
+            # Send them to the main page - or wherver you want them to go
+            Router::redirect("/");
+        } else {
+            echo "This verification code was not found.";
+
+            # Send them back to the signup page
+            Router::redirect("/users/signup");
+        }
+
+    }
+
+
+
 
     public function login($error = NULL) {
         # Set up the view
@@ -80,7 +140,8 @@ class users_controller extends base_controller {
         $q = "SELECT token 
             FROM users 
             WHERE email = '".$_POST['email']."' 
-            AND password = '".$_POST['password']."'";
+            AND password = '".$_POST['password']."'
+            AND status = 'active'";
 
         $token = DB::instance(DB_NAME)->select_field($q);
 
@@ -106,6 +167,7 @@ class users_controller extends base_controller {
             # store current time
             $current_time = Time::now();
 
+            # locates user_id for row in users that matched authorization token
             $q = "SELECT user_id
                 FROM users 
                 WHERE email = '".$_POST['email']."' 

@@ -14,7 +14,7 @@ class posts_controller extends base_controller {
 
         # Setup view
         $this->template->content = View::instance('v_posts_add');
-        $this->template->title   = "New Post";
+        $this->template->title   = "New Woof";
 
         # Render template
         echo $this->template;
@@ -28,14 +28,34 @@ class posts_controller extends base_controller {
         # Unix timestamp of when this post was created / modified
         $_POST['created']  = Time::now();
         $_POST['modified'] = Time::now();
+        $_POST['state'] = "1";
 
         # Insert
         # Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
         DB::instance(DB_NAME)->insert('posts', $_POST);
 
+        # Send them back
+        Router::redirect("/posts");
+
         # Quick and dirty feedback
-        echo "Your post has been added. <a href='/posts/add'>Add another</a>";
+        # echo "Your post has been added. <a href='/posts/add'>Add another</a>";
     }
+
+    public function delete() {
+
+        # Setup view
+        $this->template->content = View::instance('v_posts_delete');
+        $this->template->title   = "Delete a Woof";
+
+        # Render template
+        echo $this->template;
+    }
+
+
+
+
+
+
 
     public function index() {
 
@@ -60,6 +80,9 @@ class posts_controller extends base_controller {
 
         # Run the query, store the results in the variable $posts
         $posts = DB::instance(DB_NAME)->select_rows($q);
+
+        # Reverse order to display newest posts first
+        $posts = array_reverse($posts, true);
 
         # Pass data to the View
         $this->template->content->posts = $posts;
