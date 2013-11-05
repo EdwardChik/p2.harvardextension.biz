@@ -4,7 +4,7 @@
     <textarea name='content' id='content'></textarea>
 
     <br><br>
-    <input type='submit' value='New post'>
+    <input type='submit' value='New woof!'>
     <br><br>
 
 </form>
@@ -24,27 +24,14 @@
 			<div class="panel-footer">
 				<!-- timestamp of post -->
 			    <time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
-			        Woofed on <?=Time::display($post['created'])?>
+			        Woofed on <?=Time::display($post['created'])?> / 
 			    </time>
+
+			    <!-- creates link to delete post -->
+	    		<a href='/posts/delete/<?=$post['post_id']?>'>Delete Woof</a>
+
 			</div>
 		</div>
-
-	<!--
-
-		    # if the user wrote this post, display delete option
-			$poster = "SELECT user_id 
-	            FROM users
-	            WHERE token = '".$_COOKIE['token']."'";
-
-	        if(!$poster) {
-
-	            # display post delete option
-				
-
-	            Router::redirect("/users/posts");
-			}
-
-	-->
 
 	</article>
 

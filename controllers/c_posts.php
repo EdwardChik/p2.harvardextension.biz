@@ -41,35 +41,15 @@ class posts_controller extends base_controller {
         # echo "Your post has been added. <a href='/posts/add'>Add another</a>";
     }
 
-    public function delete() {
+    public function delete($post_id) {
 
-        # Setup view
-        $this->template->content = View::instance('v_posts_delete');
-        $this->template->title   = "Delete a Woof";
+        # Delete this post
+        $where_condition = 'WHERE post_id = '.$post_id;
+        DB::instance(DB_NAME)->delete('posts', $where_condition);
 
-        # Render template
-        echo $this->template;
+        # Send them back
+        Router::redirect("/posts");
     }
-
-    public function search() {
-
-        # Setup view
-        $this->template->content = View::instance('v_posts_search');
-        $this->template->title   = "Search on Woof Woof Woof";
-
-        # Render template
-        echo $this->template;
-    }
-
-
-
-
-    public function p_search() {
-
-    }
-
-
-
 
     public function index() {
 
@@ -81,6 +61,7 @@ class posts_controller extends base_controller {
         $q = 'SELECT 
                 posts.content,
                 posts.created,
+                posts.post_id,
                 posts.user_id AS post_user_id,
                 users_users.user_id AS follower_id,
                 users.first_name,

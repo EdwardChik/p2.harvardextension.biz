@@ -12,6 +12,14 @@
     <input type='text' name='email'>
     <br><br>
 
+    Location: <br>
+    <input type='text' name='location'>
+    <br><br>
+
+    Biography: <br>
+    <input type='text' name='biography'>
+    <br><br>
+
     Password: <br>
     <input type='password' name='password'>
     <br><br>

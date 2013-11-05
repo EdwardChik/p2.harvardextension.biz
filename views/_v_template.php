@@ -50,17 +50,17 @@
 
                                 <!-- menu for users who are logged in -->
                                 <?php if($user): ?>
-                                    <li><span class="glyphicon glyphicon-home"></span> <a href="/">Home</a></li>
-                                    <li><span class="glyphicon glyphicon-log-out"></span> <a href="/users/logout">Logout</a></li>
-                                    <li><span class="glyphicon glyphicon-cog"></span> <a href="/users/profile">Profile</a></li>
-                                    <li><span class="glyphicon glyphicon-list"></span> <a href="/posts">Posts</a></li>
-                                    <li><span class="glyphicon glyphicon-user"></span> <a href="/posts/users">Users</a></li>
+                                    <li><div class="navbar-text"><span class="glyphicon glyphicon-home"></span> <a href="/">Home</a></div></li>
+                                    <li><div class="navbar-text"><span class="glyphicon glyphicon-log-out"></span> <a href="/users/logout">Logout</a></div></li>
+                                    <li><div class="navbar-text"><span class="glyphicon glyphicon-cog"></span> <a href="/users/profile">Profile</a></div></li>
+                                    <li><div class="navbar-text"><span class="glyphicon glyphicon-list"></span> <a href="/posts">Woofs</a></div></li>
+                                    <li><div class="navbar-text"><span class="glyphicon glyphicon-user"></span> <a href="/posts/users">Users</a></div></li>
 
                                 <!-- menu for users who are not logged in -->
                                 <?php else: ?>
-                                    <li><span class="glyphicon glyphicon-home"></span> <a href="/">Home</a></li>
-                                    <li><span class="glyphicon glyphicon-check"></span> <a href="/users/signup">Sign up</a></li>
-                                    <li><span class="glyphicon glyphicon-log-in"></span> <a href="/users/login">Log in</a></li>
+                                    <li><p class="navbar-text"><span class="glyphicon glyphicon-home"></span> <a href="/">Home</a></p></li>
+                                    <li><p class="navbar-text"><span class="glyphicon glyphicon-check"></span> <a href="/users/signup">Sign up</a></p></li>
+                                    <li><p class="navbar-text"><span class="glyphicon glyphicon-log-in"></span> <a href="/users/login">Log in</a></p></li>
                                 <?php endif; ?>     
                             </ul>
                         </div>

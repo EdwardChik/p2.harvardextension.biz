@@ -13,9 +13,9 @@
 </ol>
 
 <ol start="8">
-	<li>Reset password</li>
 	<li>E-mail verification</li>
 	<li>E-mail confirmation</li>
+	<li>Reset password</li>
 	<li>Delete posts (or woofs)</li>
-	<li></li>
+	<li>View and edit profile</li>
 </ol>
