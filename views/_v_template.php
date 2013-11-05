@@ -17,10 +17,10 @@
 
 <body>  
     <!-- left margin of page -->
-    <div class="col-sm-2 col-md-2"></div>
+    <div class="col-sm-3 col-md-3"></div>
 
     <!-- middle content of page -->
-    <div class="col-sm-8 col-md-8">
+    <div class="col-sm-6 col-md-6">
 
         <div id='menu'>
             <div>
@@ -83,7 +83,7 @@
     </div>
 
     <!-- right margin of page -->
-    <div class="col-sm-2 col-md-2"></div>
+    <div class="col-sm-3 col-md-3"></div>
 
     <!-- jQuery leveraged by Bootstrap for selected display elements -->
     <script src="//code.jquery.com/jquery.js"></script>

@@ -6,7 +6,7 @@ class posts_controller extends base_controller {
 
         # Make sure user is logged in if they want to use anything in this controller
         if(!$this->user) {
-            die("Members only. <a href='/users/login'>Login</a>");
+            die("Woof Woof Woof requires registration for access, please <a href='/users/login'>login</a> to proceed.");
         }
     }
 
@@ -34,11 +34,14 @@ class posts_controller extends base_controller {
         # Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
         DB::instance(DB_NAME)->insert('posts', $_POST);
 
+        # increment post total by 1
+        $post_total = $this->user->post_total + 1;
+
+        # update post total for this user in database
+        $update = DB::instance(DB_NAME)->update('users', Array("post_total" => $post_total), "WHERE user_id = ".$_POST['user_id']);
+
         # Send them back
         Router::redirect("/posts");
-
-        # Quick and dirty feedback
-        # echo "Your post has been added. <a href='/posts/add'>Add another</a>";
     }
 
     public function delete($post_id) {
@@ -46,6 +49,13 @@ class posts_controller extends base_controller {
         # Delete this post
         $where_condition = 'WHERE post_id = '.$post_id;
         DB::instance(DB_NAME)->delete('posts', $where_condition);
+
+        # decrement post total by 1
+        $post_total = $this->user->post_total - 1;
+        $user_id = $this->user->user_id;
+
+        # update post total for this user in database
+        $update = DB::instance(DB_NAME)->update('users', Array("post_total" => $post_total), "WHERE user_id = ".$user_id);
 
         # Send them back
         Router::redirect("/posts");

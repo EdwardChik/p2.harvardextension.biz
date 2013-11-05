@@ -1,4 +1,4 @@
-<h1>Welcome to <?=APP_NAME?><?php if($user) echo ', '.$user->first_name; ?>!</h1>
+<h1>Welcome to <?=APP_NAME?><?php if($user) echo ', '.$user->first_name.' '.$user->last_name; ?>!</h1>
 
 <p>Here is an overview of what Woof Woof Woof has to offer:</p>
 
