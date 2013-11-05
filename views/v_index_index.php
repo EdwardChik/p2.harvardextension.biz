@@ -1,6 +1,4 @@
-<h1>Welcome to <?=APP_NAME?><?php if($user) echo ', '.$user->first_name.' '.$user->last_name; ?>!</h1>
-
-<p>Here is an overview of what Woof Woof Woof has to offer:</p>
+<p>Welcome<?php if($user) echo ', '.$user->first_name.' '.$user->last_name; ?>! Here is an overview of what Woof Woof Woof has to offer:</p>
 
 <ol>
 	<li>Sign up</li>
@@ -12,10 +10,12 @@
 	<li>View a stream of posts from the users you are following</li>
 </ol>
 
+<p>Plus, some additional features!</p>
+
 <ol start="8">
 	<li>E-mail verification</li>
 	<li>E-mail confirmation</li>
 	<li>Reset password</li>
 	<li>Delete posts (or woofs)</li>
-	<li>View and edit profile</li>
+	<li>View profile statistics</li>
 </ol>

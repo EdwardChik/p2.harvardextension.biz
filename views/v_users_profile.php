@@ -4,8 +4,8 @@
 
 <p>Biography: <?=$user->biography?></p>
 
-<p>You have written a total of <?=$user->post_total?> total woofs.</p>
+<p>You have posted a total of <?=$user->post_total?> woofs.</p>
 
-<p>You are followed by # users.</p>
+<p>You are currently followed by <?=$user->follower_total?> users.</p>
 
 <p>Your last login was on <?=Time::display($user->modified,'Y-m-d G:i')?>.</p>

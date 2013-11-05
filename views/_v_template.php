@@ -50,11 +50,11 @@
 
                                 <!-- menu for users who are logged in -->
                                 <?php if($user): ?>
-                                    <li><div class="navbar-text"><span class="glyphicon glyphicon-home"></span> <a href="/">Home</a></div></li>
-                                    <li><div class="navbar-text"><span class="glyphicon glyphicon-log-out"></span> <a href="/users/logout">Logout</a></div></li>
-                                    <li><div class="navbar-text"><span class="glyphicon glyphicon-cog"></span> <a href="/users/profile">Profile</a></div></li>
-                                    <li><div class="navbar-text"><span class="glyphicon glyphicon-list"></span> <a href="/posts">Woofs</a></div></li>
-                                    <li><div class="navbar-text"><span class="glyphicon glyphicon-user"></span> <a href="/posts/users">Users</a></div></li>
+                                    <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                                    <li><a href="/users/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                                    <li><a href="/users/profile"><span class="glyphicon glyphicon-cog"></span> Profile</a></li>
+                                    <li><a href="/posts"><span class="glyphicon glyphicon-list"></span> Woofs</a></li>
+                                    <li><a href="/posts/users"><span class="glyphicon glyphicon-user"></span> Users</a></li>
 
                                 <!-- menu for users who are not logged in -->
                                 <?php else: ?>
@@ -69,16 +69,24 @@
             </div>
         </div>
 
+        <div class="jumbotron">
+            <h1><?=APP_NAME?></h1>
+        </div>
+
         <?php if(isset($content)) echo $content; ?>
 
-        <!-- page footer -->
-        <footer>
-            <!-- details for site -->
-            <p>Woof Woof Woof is project #2 for <a href="http://www.dwa15.com" target="_blank">CSCI E-15 </a> as part of the <a href="http://www.extension.harvard.edu" target="_blank">Harvard Extension School</a>. The logo was obtained for non-commercial use from <a href="http://jamiesale-cartoonist.com/blog-of-cartoons/free-cartoon-dog-vector-clip-art/" target="_blank">this page</a>.</p>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <!-- page footer -->
+                <footer>
+                    <!-- details for site -->
+                    <p><?=APP_NAME?> is project #2 for <a href="http://www.dwa15.com" target="_blank">CSCI E-15 </a> as part of the <a href="http://www.extension.harvard.edu" target="_blank">Harvard Extension School</a>. The logo was obtained for non-commercial use from <a href="http://jamiesale-cartoonist.com/blog-of-cartoons/free-cartoon-dog-vector-clip-art/" target="_blank">this page</a>.</p>
 
-            <!-- copyright for site -->
-            <p>This web page is the copyright of Edward Chik, Fall 2013.</p>
-        </footer>
+                    <!-- copyright for site -->
+                    <p>This web page is the copyright of Edward Chik, Fall 2013.</p>
+                </footer>
+            </div>
+        </div>
 
     </div>
 
