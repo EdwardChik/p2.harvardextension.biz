@@ -5,6 +5,7 @@
 
     <br><br>
     <input type='submit' value='New post'>
+    <br><br>
 
 </form>
 
@@ -12,13 +13,21 @@
 
 	<article>
 
-	    <h1><?=$post['first_name']?> <?=$post['last_name']?> posted:</h1>
-
-	    <p><?=$post['content']?></p>
-
-	    <time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
-	        Created on <?=Time::display($post['created'])?>
-	    </time>
+		<!-- display each post in a panel, with poster name in title -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><?=$post['first_name']?> <?=$post['last_name']?></h3>
+			</div>
+			<div class="panel-body">
+				<?=$post['content']?>
+			</div>
+			<div class="panel-footer">
+				<!-- timestamp of post -->
+			    <time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
+			        Woofed on <?=Time::display($post['created'])?>
+			    </time>
+			</div>
+		</div>
 
 	<!--
 
