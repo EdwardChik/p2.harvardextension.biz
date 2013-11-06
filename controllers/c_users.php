@@ -65,10 +65,9 @@ class users_controller extends base_controller {
             # With everything set, send the email
             $email = Email::send($to, $from, $subject, $body, true);
 
-
-
             # Send them to the main page - or wherver you want them to go
             Router::redirect("/");
+
         } else {
             echo "This e-mail address is already in use.";
 
@@ -94,18 +93,39 @@ class users_controller extends base_controller {
         # checks if entered e-mail address already exists in users table
         $q = "SELECT user_id
             FROM users
-            WHERE email_verify = '".$_POST['email_verify']."'";
+            WHERE email_verify = ".$_POST['email_verify'];
 
         # Sanitizes the user entered data to prevent attacks (such as SQL injection)    
         $user_id = DB::instance(DB_NAME)->select_row($q);
     
         # If there is a user_id match, set the account status to active
         if($user_id) {
+
+            $where_condition = "WHERE user_id = ".$user_id;
+
             # update the account status time for the user
-            $update = DB::instance(DB_NAME)->update('users', Array("status" => "active"), "WHERE user_id = ".$user_id);
+            DB::instance(DB_NAME)->update_row('users', Array("status" => "active"), $where_condition);
+
+/*
+            # Build a multi-dimension array of recipients of this email
+            $to[] = Array("name" => $this->user->first_name." ".$this->user->last_name, "email" => $this->user->email);
+
+            # Build a single-dimension array of who this email is coming from
+            # note it's using the constants we set in the configuration above)
+            $from = Array("name" => APP_NAME, "email" => APP_EMAIL);
+
+            # Subject
+            $subject = "Your Woof Woof Woof Account is Verified!";
+
+            # You can set the body as just a string of text
+            $body = "Hi ".$_POST['first_name']." ".$_POST['last_name'].", thank you for verifying your account with Woof Woof Woof! We are thrilled to have you with us, go ahead and start woofing with your friends!"];
+
+            # With everything set, send the email
+            $email = Email::send($to, $from, $subject, $body, true); */
 
             # Send them to the main page - or wherver you want them to go
             Router::redirect("/");
+
         } else {
             echo "This verification code was not found.";
 

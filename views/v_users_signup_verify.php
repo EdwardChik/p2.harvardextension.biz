@@ -4,6 +4,6 @@
     <input type='text' name='email_verify'>
     <br><br>
 
-    <input type='submit'>
+    <button type="submit" class="btn btn-default navbar-btn">Verify E-mail</button>
 
 </form>

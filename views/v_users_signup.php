@@ -3,7 +3,7 @@
     <div class="input-group">
 
     First Name: <br>
-    <input type='text' class='form-control'name='first_name'>
+    <input type='text' class='form-control' name='first_name'>
     <br><br>
 
     Last Name: <br>

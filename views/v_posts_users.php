@@ -7,7 +7,7 @@
             <?=$user['first_name']?> <?=$user['last_name']?> 
 
             <!-- displays user stats -->
-            (<?=$user['post_total']?> posts / <?=$user['follower_total']?> followers)
+            (total of <?=$user['post_total']?> woofs)
 
             <!-- If there exists a connection with this user, show a unfollow link -->
             <?php if(isset($connections[$user['user_id']])): ?>

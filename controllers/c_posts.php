@@ -28,7 +28,6 @@ class posts_controller extends base_controller {
         # Unix timestamp of when this post was created / modified
         $_POST['created']  = Time::now();
         $_POST['modified'] = Time::now();
-        $_POST['state'] = "1";
 
         # Insert
         # Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
@@ -37,8 +36,10 @@ class posts_controller extends base_controller {
         # increment post total by 1
         $post_total = $this->user->post_total + 1;
 
+        $where_condition = 'WHERE user_id = '.$_POST['user_id'];
+
         # update post total for this user in database
-        $update = DB::instance(DB_NAME)->update('users', Array("post_total" => $post_total), "WHERE user_id = ".$_POST['user_id']);
+        DB::instance(DB_NAME)->update_row('users', Array("post_total" => $post_total), $where_condition);
 
         # Send them back
         Router::redirect("/posts");
@@ -54,8 +55,10 @@ class posts_controller extends base_controller {
         $post_total = $this->user->post_total - 1;
         $user_id = $this->user->user_id;
 
+        $where_condition = 'WHERE user_id = '.$user_id;
+
         # update post total for this user in database
-        $update = DB::instance(DB_NAME)->update('users', Array("post_total" => $post_total), "WHERE user_id = ".$user_id);
+        DB::instance(DB_NAME)->update('users', Array("post_total" => $post_total), $where_condition);
 
         # Send them back
         Router::redirect("/posts");
@@ -142,16 +145,6 @@ class posts_controller extends base_controller {
         # Do the insert
         DB::instance(DB_NAME)->insert('users_users', $data);
 
-        # get current follower count
-        $follower_total = "SELECT COUNT(user_id_followed)
-            FROM users_users
-            WHERE user_id_followed = ".$user_id_followed;
-
-        file_put_contents('debug.txt', 'The follower total is '.$follower_total);
-
-        # update post total for this user in database
-        DB::instance(DB_NAME)->update('users', Array("follower_total" => $follower_total++), "WHERE user_id = ".$user_id_followed);
-
         # Send them back
         Router::redirect("/posts/users");
     }
@@ -161,14 +154,6 @@ class posts_controller extends base_controller {
         # Delete this connection
         $where_condition = 'WHERE user_id = '.$this->user->user_id.' AND user_id_followed = '.$user_id_followed;
         DB::instance(DB_NAME)->delete('users_users', $where_condition);
-
-        # get current follower count
-        $follower_total = "SELECT COUNT(user_id_followed)
-            FROM users_users
-            WHERE user_id_followed = ".$user_id_followed;
-
-        # update post total for this user in database
-        DB::instance(DB_NAME)->update('users', Array("follower_total" => $follower_total--), "WHERE user_id = ".$user_id_followed);
 
         # Send them back
         Router::redirect("/posts/users");
