@@ -192,7 +192,7 @@ class users_controller extends base_controller {
                 $user_id = DB::instance(DB_NAME)->select_field($user);    
 
                 # update the last_login time for the user
-                $update = DB::instance(DB_NAME)->update('users', Array("last_login" => $current_time), "WHERE user_id = ".$user_id);
+                $update = DB::instance(DB_NAME)->update_row('users', Array("last_login" => $current_time), "WHERE user_id = ".$user_id);
 
                 # Send them to the main page - or wherver you want them to go
                 Router::redirect("/");
@@ -242,15 +242,12 @@ class users_controller extends base_controller {
         # Sanitize the user entered data to prevent any funny-business (re: SQL Injection Attacks)
         $_POST = DB::instance(DB_NAME)->sanitize($_POST);
 
-        $modified = $_POST['modified'];
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
-        $location = $_POST['location'];
-        $biography = $_POST['biography'];
-        $user_id = $_POST['user_id'];
+        # store current time
+        $_POST['modified'] = Time::now();
 
-        # update the profile details for the user
-        $update = DB::instance(DB_NAME)->update('users', Array("modified" => $modified, "first_name" => $first_name, "last_name" => $last_name, "location" => $location, "biography" => $biography), "WHERE user_id = ".$user_id);
+        # Update this profile
+        $where_condition = 'WHERE user_id = '.$_POST['user_id'];
+        $update = DB::instance(DB_NAME)->update_row('users', $_POST, $where_condition);
 
         # Send them back
         Router::redirect("/users/profile");

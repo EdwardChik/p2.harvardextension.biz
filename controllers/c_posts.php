@@ -147,6 +147,8 @@ class posts_controller extends base_controller {
             FROM users_users
             WHERE user_id_followed = ".$user_id_followed;
 
+        file_put_contents('debug.txt', 'The follower total is '.$follower_total);
+
         # update post total for this user in database
         DB::instance(DB_NAME)->update('users', Array("follower_total" => $follower_total++), "WHERE user_id = ".$user_id_followed);
 

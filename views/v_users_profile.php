@@ -1,6 +1,6 @@
 <h1>This is the profile of <?=$user->first_name?> <?=$user->last_name?>.</h1>
 
-<!-- <form method='POST' action='/users/profile_edit'> -->
+<form method='POST' action='/users/profile_edit'>
 
     <div class="input-group">
 
@@ -12,11 +12,11 @@
 
 	<p>Biography: <input type='text' class='form-control' name='biography' value='<?=$user->biography?>'></p>
 
-	<input type='hidden' name='user' value='<?=$user->user_id?>'>	
+	<input type='hidden' name='user_id' value='<?=$user->user_id?>'>	
 
 	<button type="submit" class="btn btn-default navbar-btn">Edit Profile</button>
 
-<!-- </form> -->
+</form>
 
 <p>You have posted a total of <?=$user->post_total?> woofs.</p>
 
