@@ -215,11 +215,11 @@ class users_controller extends base_controller {
                 AND password = '".$_POST['password']."'";
 
             # if a match for the token is found
-            /* if($status == 'pending') {
+            if($status == 'pending') {
                 # ask user to try verification again
                 echo "You must verify your account before logging in, <a href='/users/verify'>click here</a> to try again.";
 
-            } else { */
+            } else {
                 /* 
                 Store this token in a cookie using setcookie()
                 Important Note: *Nothing* else can echo to the page before setcookie is called
@@ -247,7 +247,7 @@ class users_controller extends base_controller {
 
                 # Send them to the main page - or wherver you want them to go
                 Router::redirect("/");
-
+                
             }
         }
     }
