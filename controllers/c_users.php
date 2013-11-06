@@ -57,10 +57,10 @@ class users_controller extends base_controller {
                 $_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
 
                 # Create an encrypted verification token via their email address and a random string
-                $_POST['email_verify'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
+                # $_POST['email_verify'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
 
                 # Initializes status as pending
-                $_POST['status'] = "pending";
+                # $_POST['status'] = "pending";
 
                 # Insert this user into the database
                 $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
@@ -79,20 +79,20 @@ class users_controller extends base_controller {
 
 
                 # Build a multi-dimension array of recipients of this email
-                $to[] = Array("name" => $_POST['first_name']." ".$_POST['last_name'], "email" => $_POST['email']);
+                # $to[] = Array("name" => $_POST['first_name']." ".$_POST['last_name'], "email" => $_POST['email']);
 
                 # Build a single-dimension array of who this email is coming from
                 # note it's using the constants we set in the configuration above)
-                $from = Array("name" => APP_NAME, "email" => APP_EMAIL);
+                # $from = Array("name" => APP_NAME, "email" => APP_EMAIL);
 
                 # Subject
-                $subject = "Welcome to Woof Woof Woof!";
+                # $subject = "Welcome to Woof Woof Woof!";
 
                 # You can set the body as just a string of text
-                $body = "Hi ".$_POST['first_name']." ".$_POST['last_name'].", this is just a message to confirm your registration at Woof Woof Woof. Now that you have signed up, you're almost ready to woof with your friends! Your verification code is: ".$_POST['email_verify'];
+                # $body = "Hi ".$_POST['first_name']." ".$_POST['last_name'].", this is just a message to confirm your registration at Woof Woof Woof. Now that you have signed up, you're almost ready to woof with your friends! Your verification code is: ".$_POST['email_verify'];
 
                 # With everything set, send the email
-                $email = Email::send($to, $from, $subject, $body, true);
+                # $email = Email::send($to, $from, $subject, $body, true);
 
                 # Send them to the main page - or wherver you want them to go
                 Router::redirect("/");
@@ -111,7 +111,7 @@ class users_controller extends base_controller {
 
 
 
-    public function signup_verify() {
+/*    public function signup_verify() {
         # Setup view
             $this->template->content = View::instance('v_users_signup_verify');
             $this->template->title   = "Verify Account for Woof Woof Woof";
@@ -137,7 +137,7 @@ class users_controller extends base_controller {
             # update the account status time for the user
             DB::instance(DB_NAME)->update_row('users', Array("status" => "active"), $where_condition);
 
-/*
+
             # Build a multi-dimension array of recipients of this email
             $to[] = Array("name" => $this->user->first_name." ".$this->user->last_name, "email" => $this->user->email);
 
@@ -152,7 +152,7 @@ class users_controller extends base_controller {
             $body = "Hi ".$_POST['first_name']." ".$_POST['last_name'].", thank you for verifying your account with Woof Woof Woof! We are thrilled to have you with us, go ahead and start woofing with your friends!"];
 
             # With everything set, send the email
-            $email = Email::send($to, $from, $subject, $body, true); */
+            $email = Email::send($to, $from, $subject, $body, true); 
 
             # Send them to the main page - or wherver you want them to go
             Router::redirect("/");
@@ -164,7 +164,7 @@ class users_controller extends base_controller {
             Router::redirect("/users/signup");
         }
 
-    }
+    } */
 
 
 
@@ -215,11 +215,11 @@ class users_controller extends base_controller {
                 AND password = '".$_POST['password']."'";
 
             # if a match for the token is found
-            if($status == 'pending') {
+            /* if($status == 'pending') {
                 # ask user to try verification again
                 echo "You must verify your account before logging in, <a href='/users/verify'>click here</a> to try again.";
 
-            } else {
+            } else { */
                 /* 
                 Store this token in a cookie using setcookie()
                 Important Note: *Nothing* else can echo to the page before setcookie is called

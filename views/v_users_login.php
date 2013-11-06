@@ -11,7 +11,7 @@
 
     <?php if(isset($error)): ?>
         <div class='error'>
-            Login failed. Please double check your email and password. To reset your password, please click <a href='/users/reset'>here</a>.
+            Login failed. Please double check your email and password. <!-- To reset your password, please click <a href='/users/reset'>here</a>.-->
         </div>
         <br>
     <?php endif; ?>
