@@ -2,29 +2,31 @@
 
     <div class="input-group">
 
-    First Name: <br>
-    <input type='text' class='form-control' name='first_name'> 
-    <br><br>
+        First Name: <br>
+        <input type='text' class='form-control' name='first_name'> 
+        <br><br>
 
-    Last Name: <br>
-    <input type='text' class='form-control' name='last_name'>
-    <br><br>
+        Last Name: <br>
+        <input type='text' class='form-control' name='last_name'>
+        <br><br>
 
-    E-mail Address: <br>
-    <input type='text' class='form-control' name='email'>
-    <br><br>
+        E-mail Address: <br>
+        <input type='text' class='form-control' name='email'>
+        <br><br>
 
-    Location: <br>
-    <input type='text' class='form-control' name='location'>
-    <br><br>
+        Location: <br>
+        <input type='text' class='form-control' name='location'>
+        <br><br>
 
-    Biography: <br>
-    <input type='text' class='form-control' name='biography'>
-    <br><br>
+        Biography: <br>
+        <input type='text' class='form-control' name='biography'>
+        <br><br>
 
-    Password: <br>
-    <input type='password' class='form-control' name='password'>
-    <br><br>
+        Password: <br>
+        <input type='password' class='form-control' name='password'>
+        <br><br>
+
+    </div>
 
     <?php if(isset($error)): ?>
         <div class='error'>

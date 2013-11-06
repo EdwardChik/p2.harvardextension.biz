@@ -6,7 +6,7 @@ class posts_controller extends base_controller {
 
         # Make sure user is logged in if they want to use anything in this controller
         if(!$this->user) {
-            die("Woof Woof Woof requires registration for access, please <a href='/users/login'>login</a> to proceed.");
+            die("<html>Woof Woof Woof requires registration for access, please <a href='/users/login'>login</a> to proceed.</html>");
         }
     }
 
