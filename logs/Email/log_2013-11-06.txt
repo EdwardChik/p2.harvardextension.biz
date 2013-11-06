@@ -172,3 +172,39 @@
 2013-11-06 4:34:06 - INFO --> Subject: Welcome to Woof Woof Woof! 
 2013-11-06 4:34:06 - INFO --> Body: Hi Mr Bean, this is just a message to confirm your registration at Woof Woof Woof. Now that you have signed up, you're almost ready to woof with your friends! Your verification code is: ea563cdd2c85f94adb437bcb94251b8ec64ae565 
 2013-11-06 4:34:06 - INFO --> FAILED TO SEND EMAIL 
+2013-11-06 4:42:58 - INFO --> -------------------------- 
+2013-11-06 4:42:58 - INFO --> Controller/Method: users/p_signup 
+2013-11-06 4:42:58 - INFO --> From: Woof Woof Woof (woofbot5000@gmail.com) 
+2013-11-06 4:42:58 - INFO --> To: Sherlock Holmes (contact@sherlock.com),  
+2013-11-06 4:42:58 - INFO --> CC:  
+2013-11-06 4:42:58 - INFO --> BCC:  
+2013-11-06 4:42:58 - INFO --> Subject: Welcome to Woof Woof Woof! 
+2013-11-06 4:42:58 - INFO --> Body: Hi Sherlock Holmes, this is just a message to confirm your registration at Woof Woof Woof. Now that you have signed up, you're almost ready to woof with your friends! Your verification code is: 07f59cca6af0110850f3b0866889556526f71f38 
+2013-11-06 4:42:58 - INFO --> FAILED TO SEND EMAIL 
+2013-11-06 4:48:03 - INFO --> -------------------------- 
+2013-11-06 4:48:03 - INFO --> Controller/Method: users/p_signup 
+2013-11-06 4:48:03 - INFO --> From: Woof Woof Woof (woofbot5000@gmail.com) 
+2013-11-06 4:48:03 - INFO --> To: Woof Woof Woof (woofbot5000@gmail.com),  
+2013-11-06 4:48:03 - INFO --> CC:  
+2013-11-06 4:48:03 - INFO --> BCC:  
+2013-11-06 4:48:03 - INFO --> Subject: Woof Woof Woof SQL Error 
+2013-11-06 4:48:03 - INFO --> Body: <h2>SQL Error</h2> INSERT INTO users_users SET created = '1383731283', user_id = '', user_id_followed = '17' Cannot add or update a child row: a foreign key constraint fails (`harvarde_p2_harvardextension_biz`.`users_users`, CONSTRAINT `users_users_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users`  
+2013-11-06 4:48:03 - INFO --> FAILED TO SEND EMAIL 
+2013-11-06 4:55:02 - INFO --> -------------------------- 
+2013-11-06 4:55:02 - INFO --> Controller/Method: users/p_signup 
+2013-11-06 4:55:02 - INFO --> From: Woof Woof Woof (woofbot5000@gmail.com) 
+2013-11-06 4:55:02 - INFO --> To: Woof Woof Woof (woofbot5000@gmail.com),  
+2013-11-06 4:55:02 - INFO --> CC:  
+2013-11-06 4:55:02 - INFO --> BCC:  
+2013-11-06 4:55:02 - INFO --> Subject: Woof Woof Woof SQL Error 
+2013-11-06 4:55:02 - INFO --> Body: <h2>SQL Error</h2> INSERT INTO users_users SET created = '1383731701', user_id = '', user_id_followed = '18' Cannot add or update a child row: a foreign key constraint fails (`harvarde_p2_harvardextension_biz`.`users_users`, CONSTRAINT `users_users_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users`  
+2013-11-06 4:55:02 - INFO --> FAILED TO SEND EMAIL 
+2013-11-06 4:56:03 - INFO --> -------------------------- 
+2013-11-06 4:56:03 - INFO --> Controller/Method: users/p_signup 
+2013-11-06 4:56:03 - INFO --> From: Woof Woof Woof (woofbot5000@gmail.com) 
+2013-11-06 4:56:03 - INFO --> To: Optimus Prime (optimus@transformers.com),  
+2013-11-06 4:56:03 - INFO --> CC:  
+2013-11-06 4:56:03 - INFO --> BCC:  
+2013-11-06 4:56:03 - INFO --> Subject: Welcome to Woof Woof Woof! 
+2013-11-06 4:56:03 - INFO --> Body: Hi Optimus Prime, this is just a message to confirm your registration at Woof Woof Woof. Now that you have signed up, you're almost ready to woof with your friends! Your verification code is: 9f4d03759387699510c0997ad3ccb9f31e89eb2b 
+2013-11-06 4:56:03 - INFO --> FAILED TO SEND EMAIL 

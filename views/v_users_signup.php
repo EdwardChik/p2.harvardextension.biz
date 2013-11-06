@@ -31,9 +31,8 @@
             Registration failed. Please double check that the data you are entering meets the following criteria:
 
             <ul>
-                <li>Names, location and biography can only contain letters, dashes and spaces.</li>
-                <li>E-mail must contain an at sign and domain name.</li>
-                <li>Password must have 1 uppercase letter, 1 lowercase letter, 1 number and 8+ characters.</li>
+                <li>All fields must be filled out.</li>
+                <li>E-mail address must be unique (not already in the system).</li>
             </ul>
 
         </div>

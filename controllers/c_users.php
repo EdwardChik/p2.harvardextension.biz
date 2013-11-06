@@ -38,8 +38,6 @@ class users_controller extends base_controller {
             $biography = $_POST['biography'];
             $password = $_POST['password'];
 
-            file_put_contents('debug.txt', 'Error is '.$error.', FN is '.$first_name.', LN is '.$last_name.', EM is '.$email.', LC is '.$location.', BIO is '.$biography.', PW is '.$password);
-
             # validation of form completion
             if(!$first_name || !$last_name || !$email || !$location || !$biography || !$password) {
 
@@ -67,6 +65,17 @@ class users_controller extends base_controller {
                 # Insert this user into the database
                 $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
 
+                file_put_contents('debug.txt', 'The user ID is '.$user_id);
+
+                # Prepare the data array to be inserted
+                $data = Array(
+                    "created" => Time::now(),
+                    "user_id" => $user_id,
+                    "user_id_followed" => $user_id
+                    );
+
+                # Do the insert
+                DB::instance(DB_NAME)->insert('users_users', $data);
 
 
                 # Build a multi-dimension array of recipients of this email
@@ -94,7 +103,7 @@ class users_controller extends base_controller {
             echo "This e-mail address is already in use.";
 
             # Send them back to the signup page
-            Router::redirect("/users/signup");
+            Router::redirect("/users/signup/error");
         }
 
     }
