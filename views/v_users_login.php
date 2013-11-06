@@ -15,7 +15,7 @@
         <br>
     <?php endif; ?>
 
-    <input type='submit' value='Log in'>
+    <button type="submit" class="btn btn-default navbar-btn">Log in!</button>
 
     <br><br>
     Forgot your password? <a href='/users/reset'>Click here</a> to reset it.

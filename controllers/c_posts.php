@@ -142,11 +142,13 @@ class posts_controller extends base_controller {
         # Do the insert
         DB::instance(DB_NAME)->insert('users_users', $data);
 
-        # increment follower total by 1
-        $follower_total = $this->user->follower_total + 1;
+        # get current follower count
+        $follower_total = "SELECT COUNT(user_id_followed)
+            FROM users_users
+            WHERE user_id_followed = ".$user_id_followed;
 
         # update post total for this user in database
-        $update = DB::instance(DB_NAME)->update('users', Array("follower_total" => $follower_total), "WHERE user_id = ".$user_id_followed);
+        DB::instance(DB_NAME)->update('users', Array("follower_total" => $follower_total++), "WHERE user_id = ".$user_id_followed);
 
         # Send them back
         Router::redirect("/posts/users");
@@ -158,11 +160,13 @@ class posts_controller extends base_controller {
         $where_condition = 'WHERE user_id = '.$this->user->user_id.' AND user_id_followed = '.$user_id_followed;
         DB::instance(DB_NAME)->delete('users_users', $where_condition);
 
-        # decrement follower total by 1
-        $follower_total = $this->user->follower_total - 1;
+        # get current follower count
+        $follower_total = "SELECT COUNT(user_id_followed)
+            FROM users_users
+            WHERE user_id_followed = ".$user_id_followed;
 
         # update post total for this user in database
-        $update = DB::instance(DB_NAME)->update('users', Array("follower_total" => $follower_total), "WHERE user_id = ".$user_id_followed);
+        DB::instance(DB_NAME)->update('users', Array("follower_total" => $follower_total--), "WHERE user_id = ".$user_id_followed);
 
         # Send them back
         Router::redirect("/posts/users");

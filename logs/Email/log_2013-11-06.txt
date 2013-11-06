@@ -1,0 +1,54 @@
+2013-11-06 0:02:31 - INFO --> -------------------------- 
+2013-11-06 0:02:31 - INFO --> Controller/Method: users/p_profile_edit 
+2013-11-06 0:02:32 - INFO --> From: Woof Woof Woof (woofbot5000@gmail.com) 
+2013-11-06 0:02:32 - INFO --> To: Woof Woof Woof (woofbot5000@gmail.com),  
+2013-11-06 0:02:32 - INFO --> CC:  
+2013-11-06 0:02:32 - INFO --> BCC:  
+2013-11-06 0:02:32 - INFO --> Subject: Woof Woof Woof SQL Error 
+2013-11-06 0:02:32 - INFO --> Body: <h2>SQL Error</h2> UPDATE users SET modified = NULL, first_name = 'Mr', last_name = 'Test', location = 'Town of Testing', biography = 'This is another test.' WHERE user_id =  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to  
+2013-11-06 0:02:32 - INFO --> FAILED TO SEND EMAIL 
+2013-11-06 0:04:12 - INFO --> -------------------------- 
+2013-11-06 0:04:12 - INFO --> Controller/Method: users/p_profile_edit 
+2013-11-06 0:04:12 - INFO --> From: Woof Woof Woof (woofbot5000@gmail.com) 
+2013-11-06 0:04:12 - INFO --> To: Woof Woof Woof (woofbot5000@gmail.com),  
+2013-11-06 0:04:12 - INFO --> CC:  
+2013-11-06 0:04:12 - INFO --> BCC:  
+2013-11-06 0:04:12 - INFO --> Subject: Woof Woof Woof SQL Error 
+2013-11-06 0:04:12 - INFO --> Body: <h2>SQL Error</h2> UPDATE users SET modified = NULL, first_name = 'Mr', last_name = 'Test', location = 'Town of Testing', biography = 'This is a test.' WHERE user_id =  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use ne 
+2013-11-06 0:04:12 - INFO --> FAILED TO SEND EMAIL 
+2013-11-06 0:04:17 - INFO --> -------------------------- 
+2013-11-06 0:04:17 - INFO --> Controller/Method: users/p_profile_edit 
+2013-11-06 0:04:17 - INFO --> From: Woof Woof Woof (woofbot5000@gmail.com) 
+2013-11-06 0:04:17 - INFO --> To: Woof Woof Woof (woofbot5000@gmail.com),  
+2013-11-06 0:04:17 - INFO --> CC:  
+2013-11-06 0:04:17 - INFO --> BCC:  
+2013-11-06 0:04:17 - INFO --> Subject: Woof Woof Woof SQL Error 
+2013-11-06 0:04:17 - INFO --> Body: <h2>SQL Error</h2> UPDATE users SET modified = NULL, first_name = 'Mr', last_name = 'Test', location = 'Test Town', biography = 'This is a test.' WHERE user_id =  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''  
+2013-11-06 0:04:17 - INFO --> FAILED TO SEND EMAIL 
+2013-11-06 0:05:11 - INFO --> -------------------------- 
+2013-11-06 0:05:11 - INFO --> Controller/Method: users/p_profile_edit 
+2013-11-06 0:05:11 - INFO --> From: Woof Woof Woof (woofbot5000@gmail.com) 
+2013-11-06 0:05:11 - INFO --> To: Woof Woof Woof (woofbot5000@gmail.com),  
+2013-11-06 0:05:11 - INFO --> CC:  
+2013-11-06 0:05:11 - INFO --> BCC:  
+2013-11-06 0:05:11 - INFO --> Subject: Woof Woof Woof SQL Error 
+2013-11-06 0:05:11 - INFO --> Body: <h2>SQL Error</h2> UPDATE users SET modified = NULL, first_name = 'Mr', last_name = 'Test', location = 'Town of Testing', biography = 'This is a test.' WHERE user_id =  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use ne 
+2013-11-06 0:05:11 - INFO --> FAILED TO SEND EMAIL 
+2013-11-06 0:07:04 - INFO --> -------------------------- 
+2013-11-06 0:07:04 - INFO --> Controller/Method: users/p_profile_edit 
+2013-11-06 0:07:04 - INFO --> From: Woof Woof Woof (woofbot5000@gmail.com) 
+2013-11-06 0:07:04 - INFO --> To: Woof Woof Woof (woofbot5000@gmail.com),  
+2013-11-06 0:07:04 - INFO --> CC:  
+2013-11-06 0:07:04 - INFO --> BCC:  
+2013-11-06 0:07:04 - INFO --> Subject: Woof Woof Woof SQL Error 
+2013-11-06 0:07:04 - INFO --> Body: <h2>SQL Error</h2> UPDATE users SET modified = NULL, first_name = 'Mr', last_name = 'Test', location = 'Test Town', biography = 'This is a test.' WHERE user_id =  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''  
+2013-11-06 0:07:04 - INFO --> FAILED TO SEND EMAIL 
+2013-11-06 0:09:40 - INFO --> -------------------------- 
+2013-11-06 0:09:40 - INFO --> Controller/Method: users/profile_edit 
+2013-11-06 0:09:40 - INFO --> From: Woof Woof Woof (woofbot5000@gmail.com) 
+2013-11-06 0:09:40 - INFO --> To: Woof Woof Woof (woofbot5000@gmail.com),  
+2013-11-06 0:09:40 - INFO --> CC:  
+2013-11-06 0:09:40 - INFO --> BCC:  
+2013-11-06 0:09:40 - INFO --> Subject: Woof Woof Woof SQL Error 
+2013-11-06 0:09:40 - INFO --> Body: <h2>SQL Error</h2> UPDATE users SET modified = NULL, first_name = 'Mr', last_name = 'Test', location = 'Town of Testing', biography = 'This is a test.' WHERE user_id =  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use ne 
+2013-11-06 0:09:40 - INFO --> FAILED TO SEND EMAIL 

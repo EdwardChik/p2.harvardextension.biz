@@ -5,6 +5,7 @@ class users_controller extends base_controller {
         echo "This is the index page";
     }
 
+
     public function signup() {
         # Setup view
             $this->template->content = View::instance('v_users_signup');
@@ -13,6 +14,7 @@ class users_controller extends base_controller {
         # Render template
             echo $this->template;
     }
+
 
     public function p_signup() {
         # checks if entered e-mail address already exists in users table
@@ -128,6 +130,7 @@ class users_controller extends base_controller {
         echo $this->template;
     }
 
+
     public function p_login() {
         # Sanitize the user entered data to prevent any funny-business (re: SQL Injection Attacks)
         $_POST = DB::instance(DB_NAME)->sanitize($_POST);
@@ -198,6 +201,7 @@ class users_controller extends base_controller {
         }
     }
 
+
     public function logout() {
         # Generate and save a new token for next login
         $new_token = sha1(TOKEN_SALT.$this->user->email.Utils::generate_random_string());
@@ -216,6 +220,7 @@ class users_controller extends base_controller {
         Router::redirect("/");
     }
 
+
     public function profile() {
         # If user is blank, they're not logged in; redirect them to the login page
         if(!$this->user) {
@@ -232,6 +237,26 @@ class users_controller extends base_controller {
         echo $this->template;
     }
 
+
+    public function profile_edit() {
+        # Sanitize the user entered data to prevent any funny-business (re: SQL Injection Attacks)
+        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+
+        $modified = $_POST['modified'];
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $location = $_POST['location'];
+        $biography = $_POST['biography'];
+        $user_id = $_POST['user_id'];
+
+        # update the profile details for the user
+        $update = DB::instance(DB_NAME)->update('users', Array("modified" => $modified, "first_name" => $first_name, "last_name" => $last_name, "location" => $location, "biography" => $biography), "WHERE user_id = ".$user_id);
+
+        # Send them back
+        Router::redirect("/users/profile");
+    }
+
+
     public function reset() {
         # Setup view
             $this->template->content = View::instance('v_users_reset');
@@ -240,6 +265,7 @@ class users_controller extends base_controller {
         # Render template
             echo $this->template;
     }
+
 
     public function p_reset() {
         # Sanitize the user entered data to prevent any funny-business (re: SQL Injection Attacks)

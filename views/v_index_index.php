@@ -18,4 +18,5 @@
 	<li>Reset password</li>
 	<li>Delete posts (or woofs)</li>
 	<li>View profile statistics</li>
+	<li>Edit profile</li>
 </ol>

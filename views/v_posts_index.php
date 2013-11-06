@@ -25,11 +25,21 @@
 			<div class="panel-footer">
 				<!-- timestamp of post -->
 				<time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
-					Woofed on <?=Time::display($post['created'])?> / 
+					Woofed on <?=Time::display($post['created'])?>
 				</time>
 
-				<!-- creates link to delete post -->
-				<a href='/posts/delete/<?=$post['post_id']?>'>Delete Woof</a>
+				User ID is <?= $user->user_id ?>
+
+				User ID in POST is <?=$post['post_user_id'] ?>
+
+		        <!-- delete option enabled for users who are logged in, for posts they wrote -->
+		        <?php if($user->user_id == $post['post_user_id']): ?>
+					<!-- creates link to delete post -->
+					 / <a href='/posts/delete/<?=$post['post_id']?>'>Delete Woof</a>
+		        <!-- delete option disabled for users who are not the author of the post -->
+		        <?php else: ?>
+					 / Delete Woof
+		        <?php endif; ?>
 
 			</div>
 		</div>
