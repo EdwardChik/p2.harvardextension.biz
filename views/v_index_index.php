@@ -17,4 +17,5 @@
 	<li>View profile statistics</li>
 	<li>Edit profile</li>
 	<li>New users automatically follow themselves upon account creation</li>
+	<li>HTML5 and CSS3 validated, fully responsive design</li>
 </ol>
