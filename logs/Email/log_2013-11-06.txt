@@ -154,3 +154,12 @@
 2013-11-06 1:48:53 - INFO --> Subject: Woof Woof Woof SQL Error 
 2013-11-06 1:48:53 - INFO --> Body: <h2>SQL Error</h2> INSERT INTO users SET first_name = '', last_name = '', email = '', location = '', biography = '', password = '84802489959df1bc7124a1a492192d518c1c49db', submitted = '1', created = '1383720533', modified = '1383720533', token = '862d372403dab52c5e00482169a5d901770405cf', email_veri 
 2013-11-06 1:48:53 - INFO --> FAILED TO SEND EMAIL 
+2013-11-06 3:07:43 - INFO --> -------------------------- 
+2013-11-06 3:07:43 - INFO --> Controller/Method: users/p_signup 
+2013-11-06 3:07:43 - INFO --> From: Woof Woof Woof (woofbot5000@gmail.com) 
+2013-11-06 3:07:43 - INFO --> To: Woof Woof Woof (woofbot5000@gmail.com),  
+2013-11-06 3:07:43 - INFO --> CC:  
+2013-11-06 3:07:43 - INFO --> BCC:  
+2013-11-06 3:07:43 - INFO --> Subject: Woof Woof Woof SQL Error 
+2013-11-06 3:07:43 - INFO --> Body: <h2>SQL Error</h2> INSERT INTO users SET first_name = 'no', last_name = '', email = '', location = '', biography = '', password = '84802489959df1bc7124a1a492192d518c1c49db', submitted = '1', created = '1383725263', modified = '1383725263', token = '2fe7a699e2a9603d29b875774508ea6122492466', email_ve 
+2013-11-06 3:07:43 - INFO --> FAILED TO SEND EMAIL 

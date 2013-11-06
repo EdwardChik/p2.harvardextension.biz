@@ -6,10 +6,13 @@ class users_controller extends base_controller {
     }
 
 
-    public function signup() {
+    public function signup($error = NULL) {
         # Setup view
             $this->template->content = View::instance('v_users_signup');
             $this->template->title   = "Sign Up for Woof Woof Woof";
+
+            # Pass data to the view
+            $this->template->content->error = $error;
 
         # Render template
             echo $this->template;
@@ -28,45 +31,83 @@ class users_controller extends base_controller {
         # If we don't have a user_id match, that means this e-mail address is available
         if(!$user_id) {
 
-            # More data we want stored with the user
-            $_POST['created']  = Time::now();
-            $_POST['modified'] = Time::now();
+            # validation of data in form
 
-            # Encrypt the password  
-            $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);            
+            # initialization of error check variables
+            $error_first_name = '';
+            $error_last_name = '';
+            $error_email = '';
+            $error_location = '';
+            $error_biography = '';
+            $error_password = '';
 
-            # Create an encrypted token via their email address and a random string
-            $_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
+            # regular expressions to validate data from input fields, stores error message in variables
+            if(preg_match("/^[A-Z][a-zA-Z -]+$/", $_POST["first_name"]) === 0)
+                $error_first_name = 'First name can only contain letters, dashes and spaces.';
 
-            # Create an encrypted verification token via their email address and a random string
-            $_POST['email_verify'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
+            if(preg_match("/^[A-Z][a-zA-Z -]+$/", $_POST["last_name"]) === 0)
+                $error_last_name = 'Last name can only contain letters, dashes and spaces.';
 
-            # Initializes status as pending
-            $_POST['status'] = "pending";
+            if(preg_match("/^[a-zA-Z]w+(.w+)*@w+(.[0-9a-zA-Z]+)*.[a-zA-Z]{2,4}$/", $_POST["email"]) === 0)
+                $error_email = 'E-mail must contain an at sign and domain name.';
 
-            # Insert this user into the database
-            $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
+            if(preg_match("/^[A-Z][a-zA-Z -]+$/", $_POST["location"]) === 0)
+                $error_location = 'Location can only contain letters, dashes and spaces.';
+
+            if(preg_match("/^[A-Z][a-zA-Z -]+$/", $_POST["biography"]) === 0)
+                $error_biography = 'Biography can only contain letters, dashes and spaces.';
+
+            if(preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $_POST["password"]) === 0)
+                $error_password = 'Password must have 1 uppercase letter, 1 lowercase letter, 1 number and 8+ characters.';
+
+            if(!$error_first_name && !$error_last_name && !$error_email && !$error_location && !$error_biography && !$error_password) {
+
+                # More data we want stored with the user
+                $_POST['created']  = Time::now();
+                $_POST['modified'] = Time::now();
+
+                # Encrypt the password  
+                $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);            
+
+                # Create an encrypted token via their email address and a random string
+                $_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
+
+                # Create an encrypted verification token via their email address and a random string
+                $_POST['email_verify'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
+
+                # Initializes status as pending
+                $_POST['status'] = "pending";
+
+                # Insert this user into the database
+                $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
 
 
 
-            # Build a multi-dimension array of recipients of this email
-            $to[] = Array("name" => $_POST['first_name']." ".$_POST['last_name'], "email" => $_POST['email']);
+                # Build a multi-dimension array of recipients of this email
+                $to[] = Array("name" => $_POST['first_name']." ".$_POST['last_name'], "email" => $_POST['email']);
 
-            # Build a single-dimension array of who this email is coming from
-            # note it's using the constants we set in the configuration above)
-            $from = Array("name" => APP_NAME, "email" => APP_EMAIL);
+                # Build a single-dimension array of who this email is coming from
+                # note it's using the constants we set in the configuration above)
+                $from = Array("name" => APP_NAME, "email" => APP_EMAIL);
 
-            # Subject
-            $subject = "Welcome to Woof Woof Woof!";
+                # Subject
+                $subject = "Welcome to Woof Woof Woof!";
 
-            # You can set the body as just a string of text
-            $body = "Hi ".$_POST['first_name']." ".$_POST['last_name'].", this is just a message to confirm your registration at Woof Woof Woof. Now that you have signed up, you're almost ready to woof with your friends! Your verification code is: ".$_POST['email_verify'];
+                # You can set the body as just a string of text
+                $body = "Hi ".$_POST['first_name']." ".$_POST['last_name'].", this is just a message to confirm your registration at Woof Woof Woof. Now that you have signed up, you're almost ready to woof with your friends! Your verification code is: ".$_POST['email_verify'];
 
-            # With everything set, send the email
-            $email = Email::send($to, $from, $subject, $body, true);
+                # With everything set, send the email
+                $email = Email::send($to, $from, $subject, $body, true);
 
-            # Send them to the main page - or wherver you want them to go
-            Router::redirect("/");
+                # Send them to the main page - or wherver you want them to go
+                Router::redirect("/");
+
+            } else {
+
+                # Send user back to the signup page
+                Router::redirect("/users/signup/error");
+
+            }
 
         } else {
             echo "This e-mail address is already in use.";
