@@ -31,36 +31,22 @@ class users_controller extends base_controller {
         # If we don't have a user_id match, that means this e-mail address is available
         if(!$user_id) {
 
-            # validation of data in form
+            $first_name = $_POST['first_name'];
+            $last_name = $_POST['last_name'];
+            $email = $_POST['email'];
+            $location = $_POST['location'];
+            $biography = $_POST['biography'];
+            $password = $_POST['password'];
 
-            # initialization of error check variables
-            $error_first_name = '';
-            $error_last_name = '';
-            $error_email = '';
-            $error_location = '';
-            $error_biography = '';
-            $error_password = '';
+            file_put_contents('debug.txt', 'Error is '.$error.', FN is '.$first_name.', LN is '.$last_name.', EM is '.$email.', LC is '.$location.', BIO is '.$biography.', PW is '.$password);
 
-            # regular expressions to validate data from input fields, stores error message in variables
-            if(preg_match("/^[A-Z][a-zA-Z -]+$/", $_POST["first_name"]) === 0)
-                $error_first_name = 'First name can only contain letters, dashes and spaces.';
+            # validation of form completion
+            if(!$first_name || !$last_name || !$email || !$location || !$biography || !$password) {
 
-            if(preg_match("/^[A-Z][a-zA-Z -]+$/", $_POST["last_name"]) === 0)
-                $error_last_name = 'Last name can only contain letters, dashes and spaces.';
+                # Send user back to the signup page
+                Router::redirect("/users/signup/error");
 
-            if(preg_match("/^[a-zA-Z]w+(.w+)*@w+(.[0-9a-zA-Z]+)*.[a-zA-Z]{2,4}$/", $_POST["email"]) === 0)
-                $error_email = 'E-mail must contain an at sign and domain name.';
-
-            if(preg_match("/^[A-Z][a-zA-Z -]+$/", $_POST["location"]) === 0)
-                $error_location = 'Location can only contain letters, dashes and spaces.';
-
-            if(preg_match("/^[A-Z][a-zA-Z -]+$/", $_POST["biography"]) === 0)
-                $error_biography = 'Biography can only contain letters, dashes and spaces.';
-
-            if(preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $_POST["password"]) === 0)
-                $error_password = 'Password must have 1 uppercase letter, 1 lowercase letter, 1 number and 8+ characters.';
-
-            if(!$error_first_name && !$error_last_name && !$error_email && !$error_location && !$error_biography && !$error_password) {
+            } else {
 
                 # More data we want stored with the user
                 $_POST['created']  = Time::now();
@@ -101,11 +87,6 @@ class users_controller extends base_controller {
 
                 # Send them to the main page - or wherver you want them to go
                 Router::redirect("/");
-
-            } else {
-
-                # Send user back to the signup page
-                Router::redirect("/users/signup/error");
 
             }
 

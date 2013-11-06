@@ -26,9 +26,6 @@
     <input type='password' class='form-control' name='password'>
     <br><br>
 
-    <!-- checks if form hsa been submitted -->
-    <input type='hidden' name='submitted' value='1'>
-
     <?php if(isset($error)): ?>
         <div class='error'>
             Registration failed. Please double check that the data you are entering meets the following criteria:

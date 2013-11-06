@@ -163,3 +163,12 @@
 2013-11-06 3:07:43 - INFO --> Subject: Woof Woof Woof SQL Error 
 2013-11-06 3:07:43 - INFO --> Body: <h2>SQL Error</h2> INSERT INTO users SET first_name = 'no', last_name = '', email = '', location = '', biography = '', password = '84802489959df1bc7124a1a492192d518c1c49db', submitted = '1', created = '1383725263', modified = '1383725263', token = '2fe7a699e2a9603d29b875774508ea6122492466', email_ve 
 2013-11-06 3:07:43 - INFO --> FAILED TO SEND EMAIL 
+2013-11-06 4:34:06 - INFO --> -------------------------- 
+2013-11-06 4:34:06 - INFO --> Controller/Method: users/p_signup 
+2013-11-06 4:34:06 - INFO --> From: Woof Woof Woof (woofbot5000@gmail.com) 
+2013-11-06 4:34:06 - INFO --> To: Mr Bean (mr@bean.com),  
+2013-11-06 4:34:06 - INFO --> CC:  
+2013-11-06 4:34:06 - INFO --> BCC:  
+2013-11-06 4:34:06 - INFO --> Subject: Welcome to Woof Woof Woof! 
+2013-11-06 4:34:06 - INFO --> Body: Hi Mr Bean, this is just a message to confirm your registration at Woof Woof Woof. Now that you have signed up, you're almost ready to woof with your friends! Your verification code is: ea563cdd2c85f94adb437bcb94251b8ec64ae565 
+2013-11-06 4:34:06 - INFO --> FAILED TO SEND EMAIL 
