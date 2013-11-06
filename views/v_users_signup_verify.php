@@ -1,3 +1,4 @@
+<!-- form to check entered verification key against stored value in databaes for this user -->
 <form method='POST' action='/users/p_signup_verify'>
 
     Enter your verification code here: <br>

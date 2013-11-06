@@ -1,3 +1,4 @@
+<!-- standardized login page -->
 <form method='POST' action='/users/p_login'>
 
     Email<br>
@@ -17,7 +18,8 @@
 
     <button type="submit" class="btn btn-default navbar-btn">Log in!</button>
 
+    <!-- 95% built, come back to this when e-mail is working
     <br><br>
-    Forgot your password? <a href='/users/reset'>Click here</a> to reset it.
+    Forgot your password? <a href='/users/reset'>Click here</a> to reset it. -->
 
 </form>

@@ -30,12 +30,13 @@
                         <!-- main site navigation bar -->
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                                <!-- responsive / collapsible navigation bar -->
                                 <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
 
-                                <!-- menu for users who are logged in -->
+                                <!-- additional slots to accomodate expanded menu for users who are logged in -->
                                 <?php if($user): ?>
 
                                     <span class="icon-bar"></span>
@@ -69,6 +70,7 @@
             </div>
         </div>
 
+        <!-- display element for standard masthead -->
         <div class="jumbotron">
             <h1></h1>
 
@@ -108,6 +110,7 @@
     <script src="//code.jquery.com/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
 
+    <!-- enabling tooltips, an opt-in feature of Bootstrap -->
     <script type="text/javascript">
         $('.show_tooltip').tooltip();
     </script>

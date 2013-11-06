@@ -1,3 +1,4 @@
+<!-- loops through users database to display each one, and allow following or unfollowing as desired -->
 <?php foreach($users as $user): ?>
 
     <div class="panel panel-default">

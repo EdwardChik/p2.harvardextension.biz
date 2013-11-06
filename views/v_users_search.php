@@ -1,3 +1,4 @@
+<!-- search option to scan database for entered data -->
 <form method='POST' action='/users/p_search'>
 
     <label for='search_term'>Search users for:</label><br>

@@ -1,3 +1,4 @@
+<!-- searches through the database for users and/or posts that match the entered criteria -->
 <form method='POST' action='/posts/p_search'>
 
     <label for='search_term'>Search posts for:</label><br>

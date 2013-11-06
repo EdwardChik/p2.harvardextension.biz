@@ -1,3 +1,4 @@
+<!-- form to write a new post -->
 <form method='POST' action='/posts/p_add'>
 
 	<label for='content'>Write a New Woof:</label><br>
@@ -10,6 +11,7 @@
 
 </form>
 
+<!-- loop that scans through posts table to display relevant entries (those being followed by the logged in user) -->
 <?php foreach($posts as $post): ?>
 
 	<article>
@@ -27,10 +29,6 @@
 				<time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
 					Woofed on <?=Time::display($post['created'])?>
 				</time>
-
-				User ID is <?= $user->user_id ?>
-
-				User ID in POST is <?=$post['post_user_id'] ?>
 
 		        <!-- delete option enabled for users who are logged in, for posts they wrote -->
 		        <?php if($user->user_id == $post['post_user_id']): ?>

@@ -10,6 +10,7 @@ class posts_controller extends base_controller {
         }
     }
 
+    # add new post
     public function add() {
 
         # Setup view
@@ -20,6 +21,7 @@ class posts_controller extends base_controller {
         echo $this->template;
     }
 
+    # processes adding of new post, including instantiating data values for fields not specified by the user such as timestamps
     public function p_add() {
 
         # Associate this post with this user
@@ -45,6 +47,7 @@ class posts_controller extends base_controller {
         Router::redirect("/posts");
     }
 
+    # deletes a post
     public function delete($post_id) {
 
         # Delete this post
@@ -64,6 +67,7 @@ class posts_controller extends base_controller {
         Router::redirect("/posts");
     }
 
+    # shows main overview of posts
     public function index() {
 
         # Set up the View
@@ -99,6 +103,7 @@ class posts_controller extends base_controller {
         echo $this->template;
     }
 
+    # lists all registered users from the database
     public function users() {
 
         # Set up the View
@@ -133,6 +138,7 @@ class posts_controller extends base_controller {
         echo $this->template;
     }
     
+    # follows a user, will display their posts for logged in user
     public function follow($user_id_followed) {
 
         # Prepare the data array to be inserted
@@ -149,6 +155,7 @@ class posts_controller extends base_controller {
         Router::redirect("/posts/users");
     }
 
+    # unfollows a user, will not display their posts for logged in user
     public function unfollow($user_id_followed) {
 
         # Delete this connection

@@ -1,3 +1,4 @@
+<!-- form to prompt for e-mail address, for password reset and message to user -->
 <form method='POST' action='/users/p_reset'>
 
     Enter your account e-mail (your new password will be sent to this address): <br>

@@ -1,3 +1,4 @@
+<!-- allows a new user to sign up for Woof Woof Woof -->
 <form method='POST' action='/users/p_signup'>
 
     <div class="input-group">
@@ -28,6 +29,7 @@
 
     </div>
 
+    <!-- displays message upon error -->
     <?php if(isset($error)): ?>
         <div class='error'>
             Registration failed. Please double check that the data you are entering meets the following criteria:

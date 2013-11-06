@@ -13,9 +13,6 @@
 <p>Plus, some additional features!</p>
 
 <ol start="8">
-	<li>E-mail verification</li>
-	<li>E-mail confirmation</li>
-	<li>Reset password</li>
 	<li>Delete posts (or woofs)</li>
 	<li>View profile statistics</li>
 	<li>Edit profile</li>

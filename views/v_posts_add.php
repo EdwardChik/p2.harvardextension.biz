@@ -1,3 +1,4 @@
+<!-- add new post to the service -->
 <form method='POST' action='/posts/p_add'>
 
     <label for='content'>New Post:</label><br>
