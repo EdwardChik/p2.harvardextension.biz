@@ -70,7 +70,18 @@
         </div>
 
         <div class="jumbotron">
-            <h1><?=APP_NAME?></h1>
+            <h1></h1>
+
+            <!--- Woof Woof Woof! logo -->
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="/images/logos/woofwoofwoof_logo.png" alt="Logo for Woof Woof Woof!" />
+                </a>
+                <div class="media-body">
+                    <h2 class="media-heading"><?=APP_NAME?></h2>
+                    Welcome to this super awesome messaging app!
+                </div>
+            </div>
         </div>
 
         <?php if(isset($content)) echo $content; ?>
@@ -80,7 +91,7 @@
                 <!-- page footer -->
                 <footer>
                     <!-- details for site -->
-                    <p><?=APP_NAME?> is project #2 for <a href="http://www.dwa15.com" target="_blank">CSCI E-15 </a> as part of the <a href="http://www.extension.harvard.edu" target="_blank">Harvard Extension School</a>. The logo was obtained for non-commercial use from <a href="http://jamiesale-cartoonist.com/blog-of-cartoons/free-cartoon-dog-vector-clip-art/" target="_blank">this page</a>.</p>
+                    <p><?=APP_NAME?> is project #2 for <a href="http://www.dwa15.com" target="_blank">CSCI E-15</a> as part of the <a href="http://www.extension.harvard.edu" target="_blank">Harvard Extension School</a>. The logo was obtained for non-commercial use from <a href="http://jamiesale-cartoonist.com/blog-of-cartoons/free-cartoon-dog-vector-clip-art/" target="_blank">this page</a>.</p>
 
                     <!-- copyright for site -->
                     <p>This web page is the copyright of Edward Chik, Fall 2013.</p>

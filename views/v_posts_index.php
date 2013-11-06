@@ -1,11 +1,12 @@
 <form method='POST' action='/posts/p_add'>
 
-    <label for='content'>Write a New Woof:</label><br>
-    <textarea name='content' id='content'></textarea>
+	<label for='content'>Write a New Woof:</label><br>
+	
+	<textarea name='content' id='content'></textarea>
 
-    <br><br>
-    <input type='submit' value='New woof!'>
-    <br><br>
+	<button type="submit" class="btn btn-default navbar-btn">New woof!</button>
+
+	<br><br>
 
 </form>
 
@@ -23,12 +24,12 @@
 			</div>
 			<div class="panel-footer">
 				<!-- timestamp of post -->
-			    <time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
-			        Woofed on <?=Time::display($post['created'])?> / 
-			    </time>
+				<time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
+					Woofed on <?=Time::display($post['created'])?> / 
+				</time>
 
-			    <!-- creates link to delete post -->
-	    		<a href='/posts/delete/<?=$post['post_id']?>'>Delete Woof</a>
+				<!-- creates link to delete post -->
+				<a href='/posts/delete/<?=$post['post_id']?>'>Delete Woof</a>
 
 			</div>
 		</div>
