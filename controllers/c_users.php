@@ -65,8 +65,6 @@ class users_controller extends base_controller {
                 # Insert this user into the database
                 $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
 
-                file_put_contents('debug.txt', 'The user ID is '.$user_id);
-
                 # Prepare the data array to be inserted
                 $data = Array(
                     "created" => Time::now(),
@@ -100,7 +98,6 @@ class users_controller extends base_controller {
             }
 
         } else {
-            echo "This e-mail address is already in use.";
 
             # Send them back to the signup page
             Router::redirect("/users/signup/error");
@@ -247,7 +244,7 @@ class users_controller extends base_controller {
 
                 # Send them to the main page - or wherver you want them to go
                 Router::redirect("/");
-                
+
             }
         }
     }
